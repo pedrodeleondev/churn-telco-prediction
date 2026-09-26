@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Entrena el pipeline final de predicción de churn y genera los artefactos del proyecto.
-
-Reproduce la metodología del notebook (notebooks/ProyectoFinal_AAA.ipynb):
-limpieza de datos, partición 70/15/15 estratificada, comparación de modelos
-por validación cruzada, selección de Regresión Logística como modelo final,
-evaluación en el conjunto de prueba con el umbral operativo, e interpretación
-por coeficientes.
+"""Entrena el modelo final y genera los archivos de models/ y results/.
 
 Uso:
     python scripts/train.py

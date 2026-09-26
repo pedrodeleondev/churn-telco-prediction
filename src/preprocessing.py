@@ -1,9 +1,4 @@
-"""Funciones de preprocesamiento para el proyecto de predicción de Churn.
-
-Replica el pipeline definido en notebooks/ProyectoFinal_AAA.ipynb:
-limpieza de TotalCharges, separación X/y, y ColumnTransformer
-(imputación + escalamiento para numéricas, imputación + One-Hot para categóricas).
-"""
+"""Funciones de preprocesamiento sacadas del notebook (limpieza, split y ColumnTransformer)."""
 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
@@ -34,11 +29,7 @@ def cargar_datos(ruta_csv):
 
 
 def limpiar_datos(df):
-    """Corrige tipos de datos del dataset crudo.
-
-    - TotalCharges: convierte de texto a numérico (11 registros con espacios en blanco).
-    - Churn: si viene como texto Yes/No, la codifica como 1/0.
-    """
+    """TotalCharges a numérico (tenía 11 registros con espacios) y Churn Yes/No a 1/0."""
     df = df.copy()
 
     df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
@@ -52,21 +43,14 @@ def limpiar_datos(df):
 
 
 def separar_X_y(df):
-    """Separa el DataFrame en variables predictoras (X) y objetivo (y).
-
-    Excluye customerID (identificador único, sin valor predictivo) y Churn (objetivo).
-    """
+    """Separa en X (predictoras) y y (Churn); descarta customerID."""
     X = df.drop(columns=[COLUMNA_ID, COLUMNA_OBJETIVO])
     y = df[COLUMNA_OBJETIVO]
     return X, y
 
 
 def construir_preprocesador():
-    """Crea el ColumnTransformer usado por todos los modelos del proyecto.
-
-    Numéricas: imputación por mediana + StandardScaler.
-    Categóricas: imputación por moda + OneHotEncoder(handle_unknown='ignore').
-    """
+    """ColumnTransformer del proyecto: numéricas con mediana+escalado, categóricas con moda+OneHot."""
     pipeline_numerico = Pipeline(steps=[
         ("imputer", SimpleImputer(strategy="median")),
         ("scaler", StandardScaler()),
@@ -86,11 +70,7 @@ def construir_preprocesador():
 
 
 def dividir_datos(X, y, test_size=0.30, val_size=0.50, random_state=RANDOM_STATE):
-    """Divide en Train (70%) / Validación (15%) / Test (15%), estratificado por y.
-
-    test_size reparte el 30% inicial fuera de train; val_size reparte ese 30%
-    a la mitad entre validación y test (valores por defecto = partición del proyecto).
-    """
+    """Split estratificado 70/15/15 (train/val/test), igual que en el notebook."""
     X_train, X_temp, y_train, y_temp = train_test_split(
         X, y, test_size=test_size, stratify=y, random_state=random_state
     )

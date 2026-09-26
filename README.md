@@ -11,16 +11,11 @@ Notebook original en Colab: **[ProyectoFinal_AAA.ipynb](https://colab.research.g
 
 ## Contexto y objetivo de negocio
 
-| Elemento | Descripción |
-|---|---|
-| Contexto organizacional | Empresa de servicios por suscripción que busca reducir la pérdida de clientes identificando anticipadamente los casos con mayor riesgo de abandono |
-| Unidad de análisis | Cada fila representa a un cliente único, con sus atributos demográficos, servicios contratados, condiciones y método de pago |
-| Variable objetivo | `Churn` — indica si el cliente abandonó (`Yes`) o permaneció (`No`) con el servicio |
-| Clase positiva | `Churn = Yes` → codificada como `1` |
-| Usuarios potenciales | Equipo de retención de clientes, análisis de datos, marketing y experiencia de cliente |
-| Decisión que apoya el modelo | A qué clientes contactar primero, o con qué prioridad ofrecer una acción de retención |
-| Riesgo de uso incorrecto | Tratar la probabilidad de abandono como algo determinístico para automatizar decisiones, generando injusticias o acciones desfavorables hacia clientes |
-| Criterio de éxito | Superar el baseline (`DummyClassifier`) en Recall y F1, manteniendo una precisión razonable |
+Telco es una empresa de servicios por suscripción que quiere reducir la pérdida de clientes detectando a tiempo los casos con mayor riesgo de abandono. Cada fila del dataset es un cliente, con sus datos demográficos, servicios contratados, condiciones de contrato y método de pago.
+
+La variable objetivo es `Churn` (`Yes`/`No`); la clase positiva (`Churn = Yes`) se codifica como `1`. La idea es que el equipo de retención sepa a qué clientes conviene contactar primero o con qué prioridad ofrecerles algo, no automatizar decisiones tratando la probabilidad como algo determinístico — eso podría terminar en acciones injustas hacia ciertos clientes.
+
+Como criterio de éxito se buscó superar el baseline (`DummyClassifier`) en Recall y F1 sin sacrificar demasiado la precisión.
 
 ## Resumen del proyecto
 

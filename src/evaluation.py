@@ -1,9 +1,4 @@
-"""Funciones de evaluación y visualización para los modelos de Churn.
-
-Replica la lógica de evaluación usada en notebooks/ProyectoFinal_AAA.ipynb:
-métricas por modelo, comparación con validación cruzada, matriz de confusión,
-curva ROC, curva Precision-Recall y análisis de umbrales de decisión.
-"""
+"""Métricas y gráficos para comparar modelos, tal como se usan en el notebook."""
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -30,10 +25,7 @@ SCORING = {
 
 
 def evaluar_modelo(nombre, modelo, X_eval, y_eval):
-    """Calcula accuracy, precision, recall, f1 y ROC-AUC para un modelo entrenado.
-
-    Devuelve (metricas: dict, y_pred, y_prob).
-    """
+    """Accuracy, precision, recall, f1 y ROC-AUC de un modelo ya entrenado."""
     y_pred = modelo.predict(X_eval)
     y_prob = modelo.predict_proba(X_eval)[:, 1] if hasattr(modelo, "predict_proba") else None
 
@@ -49,11 +41,7 @@ def evaluar_modelo(nombre, modelo, X_eval, y_eval):
 
 
 def comparar_modelos(modelos, X, y, cv, scoring=None):
-    """Compara varios modelos con validación cruzada, ordenados por Recall.
-
-    modelos: dict {nombre: pipeline_sklearn}.
-    Devuelve un DataFrame con medias y desviaciones estándar de cada métrica.
-    """
+    """Cross-validation de varios modelos (dict nombre -> pipeline), ordenado por Recall."""
     scoring = scoring or SCORING
     resultados = []
 
@@ -84,10 +72,7 @@ def graficar_matriz_confusion(y_true, y_pred, titulo="Matriz de confusión",
 
 
 def graficar_curva_roc(modelos_prob, y_true, titulo="Curva ROC"):
-    """Dibuja curvas ROC comparando varios modelos.
-
-    modelos_prob: dict {nombre: y_prob} con probabilidades de la clase positiva.
-    """
+    """Curva ROC de uno o varios modelos (dict nombre -> y_prob)."""
     plt.figure()
     for nombre, y_prob in modelos_prob.items():
         fpr, tpr, _ = roc_curve(y_true, y_prob)
@@ -101,7 +86,7 @@ def graficar_curva_roc(modelos_prob, y_true, titulo="Curva ROC"):
 
 
 def graficar_curva_precision_recall(modelos_prob, y_true, titulo="Curva Precision-Recall"):
-    """Dibuja curvas Precision-Recall comparando varios modelos."""
+    """Curva Precision-Recall de uno o varios modelos."""
     plt.figure()
     for nombre, y_prob in modelos_prob.items():
         precision, recall, _ = precision_recall_curve(y_true, y_prob)
@@ -113,10 +98,7 @@ def graficar_curva_precision_recall(modelos_prob, y_true, titulo="Curva Precisio
 
 
 def evaluar_umbrales(y_true, y_prob, umbrales=(0.30, 0.40, 0.50, 0.60, 0.70)):
-    """Calcula precision, recall, f1 y errores para distintos umbrales de decisión.
-
-    Útil para elegir un umbral operativo que priorice Recall (minimizar falsos negativos).
-    """
+    """Precision, recall, f1 y falsos pos/neg para cada umbral (para elegir el operativo)."""
     resultados = []
     for umbral in umbrales:
         y_pred_umbral = (y_prob >= umbral).astype(int)
