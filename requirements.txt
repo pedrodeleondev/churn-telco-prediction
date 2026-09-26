@@ -1,0 +1,16 @@
+# Dependencias del proyecto de predicción de Churn en Telco
+# Versiones fijadas para reproducibilidad (coinciden con el entorno de Google Colab
+# usado en notebooks/ProyectoFinal_AAA.ipynb: Python 3.13, sklearn 1.6.1)
+
+pandas==2.2.3
+numpy==2.1.3
+scikit-learn==1.6.1
+matplotlib==3.9.2
+seaborn==0.13.2
+jupyter==1.1.1
+joblib==1.4.2
+
+# API de predicción (scripts/api.py)
+fastapi==0.115.6
+uvicorn==0.32.1
+pydantic==2.10.3
