@@ -40,14 +40,14 @@ Este repositorio sigue la estructura esperada para un proyecto de ML reproducibl
 
 | Requisito | Ubicación | Estado |
 |---|---|---|
-| Notebooks | [`notebooks/ProyectoFinal_AAA.ipynb`](notebooks/ProyectoFinal_AAA.ipynb) | ✅ Análisis, EDA, modelado y evaluación completos |
-| Scripts | [`src/preprocessing.py`](src/preprocessing.py), [`src/evaluation.py`](src/evaluation.py), [`scripts/train.py`](scripts/train.py), [`scripts/predict.py`](scripts/predict.py), [`scripts/api.py`](scripts/api.py) | ✅ Módulos reutilizables + entrenamiento + CLI + API |
-| Datos / instrucciones de descarga | [`data/TelcoCustomer.csv`](data/TelcoCustomer.csv), [`data/README.md`](data/README.md) | ✅ Dataset incluido y documentado |
-| Artefactos del modelo | [`models/modelo_churn_final_v1.joblib`](models/modelo_churn_final_v1.joblib) | ✅ Pipeline entrenado (preprocesamiento + Regresión Logística) generado con `scripts/train.py` |
-| Aplicación / API | [`scripts/predict.py`](scripts/predict.py) (CLI) + [`scripts/api.py`](scripts/api.py) (API REST con FastAPI) | ✅ Predicción por línea de comandos y por HTTP (`/predict`, `/predict/batch`) |
-| Resultados | [`results/`](results/) | ✅ Gráficos, tablas de comparación de modelos y métricas finales generados con `scripts/train.py` |
-| Documentación | Este README, [`GITHUB_SETUP.md`](GITHUB_SETUP.md), [`notebooks/COLAB_INICIO.md`](notebooks/COLAB_INICIO.md), [`data/README.md`](data/README.md) | ✅ |
-| Dependencias | [`requirements.txt`](requirements.txt) | ✅ Versiones fijadas, incluye extras de la API |
+| Notebooks | [`notebooks/ProyectoFinal_AAA.ipynb`](notebooks/ProyectoFinal_AAA.ipynb) | Análisis, EDA, modelado y evaluación completos |
+| Scripts | [`src/preprocessing.py`](src/preprocessing.py), [`src/evaluation.py`](src/evaluation.py), [`scripts/train.py`](scripts/train.py), [`scripts/predict.py`](scripts/predict.py), [`scripts/api.py`](scripts/api.py) | Módulos reutilizables + entrenamiento + CLI + API |
+| Datos / instrucciones de descarga | [`data/TelcoCustomer.csv`](data/TelcoCustomer.csv), [`data/README.md`](data/README.md) | Dataset incluido y documentado |
+| Artefactos del modelo | [`models/modelo_churn_final_v1.joblib`](models/modelo_churn_final_v1.joblib) | Pipeline entrenado (preprocesamiento + Regresión Logística) generado con `scripts/train.py` |
+| Aplicación / API | [`scripts/predict.py`](scripts/predict.py) (CLI) + [`scripts/api.py`](scripts/api.py) (API REST con FastAPI) | Predicción por línea de comandos y por HTTP (`/predict`, `/predict/batch`) |
+| Resultados | [`results/`](results/) | Gráficos, tablas de comparación de modelos y métricas finales generados con `scripts/train.py` |
+| Documentación | Este README, [`GITHUB_SETUP.md`](GITHUB_SETUP.md), [`notebooks/COLAB_INICIO.md`](notebooks/COLAB_INICIO.md), [`data/README.md`](data/README.md) | Completa |
+| Dependencias | [`requirements.txt`](requirements.txt) | Versiones fijadas, incluye extras de la API |
 
 > Nota: `models/*.joblib` y los archivos generados en `results/` sí están versionados en este repositorio (son pequeños: el modelo pesa ~9 KB) para que el proyecto quede completo y ejecutable sin pasos adicionales. El `.gitignore` los excluye por defecto como buena práctica general para modelos grandes; si tu modelo creciera mucho, quítalos del control de versiones y usa `scripts/train.py` para regenerarlos.
 
